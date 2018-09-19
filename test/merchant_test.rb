@@ -13,7 +13,6 @@ class MerchantTest <  Minitest::Test
     m = Merchant.new({:id => 5, :name => "Turing School"})
     assert_equal 5 , m.id
     assert_equal "Turing School" , m.name
-    assert_equal self , m.parent
   end
 
 end
