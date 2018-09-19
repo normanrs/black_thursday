@@ -4,7 +4,7 @@ require_relative '../lib/invoice_repository.rb'
 class InvoiceRepositoryTest <  Minitest::Test
 
   def test_it_exists
-    ir = InvoiceRepository.new('./data/items_tiny.csv', self)
+    ir = InvoiceRepository.new('./data/items_tiny.csv')
     assert_instance_of InvoiceRepository, ir
   end
 

@@ -13,10 +13,9 @@ include Crud
 
   attr_reader :collection
 
-  def initialize(filepath, parent)
+  def initialize(filepath)
     @collection = []
     loader(filepath)
-    @parent = parent
   end
 
   def create(attributes)
@@ -26,7 +25,7 @@ include Crud
     else
       attributes[:id] = 1
     end
-    i = Customer.new(attributes, self)
+    i = Customer.new(attributes)
     @collection << i
   end
 
@@ -37,7 +36,7 @@ include Crud
   def find_all_by_first_name(name)
     find_all_by("first_name", name)
   end
-  
+
   def find_all_by_last_name(l_name)
     find_all_by("last_name", l_name)
   end
@@ -54,10 +53,10 @@ include Crud
        customer[:last_name]                   = customer[:last_name]
        customer[:updated_at]                  = Time.parse(customer[:updated_at])
        customer[:created_at]                  = Time.parse(customer[:created_at])
-     @collection << Customer.new(customer, @parent)
+     @collection << Customer.new(customer)
      end
    end
-  
+
    def update(id, attributes)
     customer = find_by_id(id)
     empty_first = attributes[:first_name].nil?
@@ -65,7 +64,7 @@ include Crud
     customer.first_name = attributes[:first_name] unless empty_first
     customer.last_name = attributes[:last_name] unless empty_last
     customer.updated_at = Time.now unless empty_first && empty_last
-    customer  
+    customer
   end
 
 end

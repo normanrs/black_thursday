@@ -8,10 +8,9 @@ class InvoiceItemsRepository
 
     attr_reader :collection
 
-    def initialize(filepath, parent)
+    def initialize(filepath)
       @collection = []
       loader(filepath)
-      @parent = parent
     end
 
     def create(attributes)
@@ -21,7 +20,7 @@ class InvoiceItemsRepository
       else
         attributes[:id] = 1
       end
-      single_invoice_item = InvoiceItem.new(attributes, self)
+      single_invoice_item = InvoiceItem.new(attributes)
       @collection << single_invoice_item
     end
 
@@ -46,7 +45,7 @@ class InvoiceItemsRepository
          invoice[:quantity] = invoice[:quantity].to_i
          invoice[:updated_at] = Time.parse(invoice[:updated_at])
          invoice[:created_at] = Time.parse(invoice[:created_at])
-         @collection << InvoiceItem.new(invoice, @parent)
+         @collection << InvoiceItem.new(invoice)
        end
     end
 
