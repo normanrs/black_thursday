@@ -18,5 +18,4 @@ class InvoiceTest <  Minitest::Test
     assert_equal 2, i.merchant_id
     assert_equal :pending, i.status
   end
-
 end
