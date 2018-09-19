@@ -177,6 +177,7 @@ class SalesAnalystTest < Minitest::Test
     assert_equal Array, actual.class
   end
 
+
   def test_valid_invoice_items
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
@@ -193,4 +194,17 @@ class SalesAnalystTest < Minitest::Test
     assert_equal Array, actual.class
   end
 
+  def test_best_item_for_merchant
+    se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
+    sa = se.analyst
+    merchant_id = 12334189
+    assert_equal 263516130, sa.best_item_for_merchant(merchant_id)
+  end
+
+  def
+    se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
+    sa = se.analyst
+
+    assert_equal 21, sa.merchants_with_only_one_item_registered_in_month("March").length
+  end
 end
