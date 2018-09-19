@@ -114,7 +114,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_invoice_total
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     actual = sa.invoice_total(3485)
@@ -123,7 +122,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_total_revenue_by_date
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     actual = sa.total_revenue_by_date(Time.parse("2009-02-07"))
@@ -132,7 +130,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_total_pending_invoices
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     actual = sa.pending_invoices
@@ -141,7 +138,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_merchants_with_pending_invoices
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     actual = sa.merchants_with_pending_invoices
@@ -150,7 +146,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_merchants_with_pending_invoices
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     actual = sa.merchants_with_only_one_item
@@ -159,7 +154,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_revenue_by_merchant
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     actual = sa.revenue_by_merchant(12334194)
@@ -168,7 +162,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_top_revenue_earners
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     earners = sa.top_revenue_earners
@@ -177,7 +170,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_valid_transactions
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions_tiny.csv", :merchants => "./data/merchants_tiny.csv", :items => "./data/items_tiny.csv", :invoices => "./data/invoices_tiny.csv", :invoice_items => "./data/invoice_items_tiny.csv"})
     sa = se.analyst
     actual = sa.valid_transactions(se.invoices.all)
@@ -185,13 +177,11 @@ class SalesAnalystTest < Minitest::Test
     assert_equal Array, actual.class
   end
 
-
   def test_valid_invoice_items
-    skip
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     actual = sa.most_sold_item_for_merchant(12334189)
-    assert_equal 9, actual.count
+    assert_equal 1, actual.count
     assert_equal Array, actual.class
   end
 
@@ -202,14 +192,5 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 1, actual.count
     assert_equal Array, actual.class
   end
-
-  # def test_matched_invoices
-  #   skip
-  #   se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
-  #   sa = se.analyst
-  #   actual = sa.matched_invoices[328]
-  #   expected = 12337193
-  #   assert_equal expected, actual
-  # end
 
 end
