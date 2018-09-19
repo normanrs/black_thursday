@@ -5,7 +5,8 @@ require "time"
 class InvoiceItemsRepository
   include Crud
   
-    attr_reader :collection
+    attr_reader :collection, 
+                :parent 
   
     def initialize(filepath, parent)
       @collection = []

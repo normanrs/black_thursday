@@ -10,14 +10,14 @@ class MerchantRepositoryTest < Minitest::Test
   def test_it_loads_merchants
     mr = MerchantRepository.new('./data/merchants_tiny.csv', self)
     actual = mr.collection.count
-    expected = 9
+    expected = 475
     assert_equal expected, actual
   end
 
   def test_all
     mr = MerchantRepository.new('./data/merchants_tiny.csv', self)
     actual = mr.all.count
-    expected = 9
+    expected = 475
     assert_equal expected, actual
   end
 
@@ -44,10 +44,10 @@ class MerchantRepositoryTest < Minitest::Test
 
   def test_delete
     mr = MerchantRepository.new('./data/merchants_tiny.csv', self)
-    assert_equal 9, mr.collection.length
+    assert_equal 475, mr.collection.length
     mr.delete(12334123)
     actual = mr.collection.length
-    expected = 8
+    expected = 474
     assert_equal expected, actual
   end
 
@@ -56,7 +56,7 @@ class MerchantRepositoryTest < Minitest::Test
     mr.create({:name=>"Melvin"})
     newdude = mr.collection.max_by {|element| element.id}
     actual = newdude.id
-    expected = 12334145
+    expected = 12337412
     assert_equal expected, actual
   end
   #

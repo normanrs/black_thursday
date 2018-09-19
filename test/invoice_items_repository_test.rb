@@ -1,5 +1,8 @@
-require_relative  "test_helper"
-require './lib/invoice_items_repository.'
+require 'CSV'
+require 'bigdecimal'
+require 'bigdecimal/util'
+require 'time'
+require_relative '../lib/invoice_items_repository'
 
 class InvoiceItemsRepositoryTest <  Minitest::Test
 
@@ -7,5 +10,5 @@ class InvoiceItemsRepositoryTest <  Minitest::Test
     ir = InvoiceItemsRepository.new('./data/items_tiny.csv', self)
     assert_instance_of InvoiceItemsRepository, ir
   end
-
+ 
 end

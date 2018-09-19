@@ -1,5 +1,6 @@
 require 'bigdecimal'
 require 'bigdecimal/util'
+require 'csv'
 
 module Crud
 
