@@ -1,12 +1,13 @@
 require_relative 'invoice_item'
 require 'bigdecimal'
-require "time"
+require 'time'
+require_relative 'crud.rb'
 
 class InvoiceItemsRepository
   include Crud
-  
+
     attr_reader :collection
-  
+
     def initialize(filepath, parent)
       @collection = []
       loader(filepath)
@@ -23,11 +24,11 @@ class InvoiceItemsRepository
       single_invoice_item = InvoiceItem.new(attributes, self)
       @collection << single_invoice_item
     end
-  
+
     def find_all_by_item_id(string)
       find_all_by_exact(("item_id"), string)
     end
-  
+
    def find_all_by_invoice_id(invoice_id)
      find_all_by_exact("invoice_id", invoice_id)
    end
@@ -35,7 +36,7 @@ class InvoiceItemsRepository
     def all
       @collection
     end
-  
+
     def loader(filepath)
       invoice_table = load(filepath)
        invoice_table.map do |invoice|
@@ -48,17 +49,16 @@ class InvoiceItemsRepository
          @collection << InvoiceItem.new(invoice, @parent)
        end
     end
-  
+
     def update(id, attributes)
       invoice = find_by_id(id)
       empty_quantity = attributes[:quantity].nil?
       empty_unit_price = attributes[:unit_price].nil?
-      
+
       invoice.quantity = attributes[:quantity] unless empty_quantity
       invoice.unit_price = attributes[:unit_price] unless empty_unit_price
       invoice.updated_at = Time.now unless empty_quantity && empty_unit_price
       invoice
     end
-  
+
 end
-  

@@ -1,5 +1,5 @@
-require './test/test_helper'
-require './lib/maths.rb'
+require_relative '../test/test_helper'
+require_relative '../lib/maths.rb'
 
 class MathsTest < Minitest::Test
   include Maths

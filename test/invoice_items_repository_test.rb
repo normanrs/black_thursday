@@ -1,5 +1,5 @@
 require_relative  "test_helper"
-require './lib/invoice_items_repository.'
+require_relative '../lib/invoice_items_repository.rb'
 
 class InvoiceItemsRepositoryTest <  Minitest::Test
 
