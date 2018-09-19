@@ -201,10 +201,9 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 263516130, sa.best_item_for_merchant(merchant_id)
   end
 
-  def
+  def test_only_one_registered
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
-
     assert_equal 21, sa.merchants_with_only_one_item_registered_in_month("March").length
   end
 end
