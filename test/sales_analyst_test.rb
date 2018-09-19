@@ -121,14 +121,6 @@ class SalesAnalystTest < Minitest::Test
     assert_equal BigDecimal, actual.class
   end
 
-  def test_total_revenue_by_date
-    se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
-    sa = se.analyst
-    actual = sa.total_revenue_by_date(Time.parse("2009-02-07"))
-    assert_equal 21067.77, actual
-    assert_equal BigDecimal, actual.class
-  end
-
   def test_total_pending_invoices
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
@@ -145,7 +137,7 @@ class SalesAnalystTest < Minitest::Test
     assert_equal Array, actual.class
   end
 
-  def test_merchants_with_pending_invoices
+  def test_merchants_with_only_one_item
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
     actual = sa.merchants_with_only_one_item
@@ -197,8 +189,10 @@ class SalesAnalystTest < Minitest::Test
   def test_best_item_for_merchant
     se = SalesEngine.from_csv({:transactions => "./data/transactions.csv", :merchants => "./data/merchants.csv", :items => "./data/items.csv", :invoices => "./data/invoices.csv", :invoice_items => "./data/invoice_items.csv"})
     sa = se.analyst
-    merchant_id = 12334189
-    assert_equal 263516130, sa.best_item_for_merchant(merchant_id)
+    found = sa.best_item_for_merchant(12334189)
+    actual = found.id
+    expected = 263516130
+    assert_equal expected, actual
   end
 
   def test_only_one_registered
