@@ -13,10 +13,9 @@ include Crud
   attr_reader :collection,
               :changeable_attributes
 
-  def initialize(filepath, parent)
+  def initialize(filepath)
     @collection = []
     loader(filepath)
-    @parent = parent
     @changeable_attributes = [:name]
   end
 
@@ -29,7 +28,7 @@ include Crud
     end
     attributes[:updated_at] = Time.now
     attributes[:created_at] = Time.now
-    merch = Merchant.new(attributes, self)
+    merch = Merchant.new(attributes)
     @collection << merch
   end
 
@@ -47,7 +46,7 @@ include Crud
        merchant[:id] = merchant[:id].to_i
        merchant[:updated_at] = Time.parse(merchant[:updated_at])
        merchant[:created_at] = Time.parse(merchant[:created_at])
-      @collection << Merchant.new(merchant, @parent)
+      @collection << Merchant.new(merchant)
      end
   end
 

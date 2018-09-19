@@ -34,31 +34,31 @@ include Crud
  end
 
   def merchants
-    @merchants ||= MerchantRepository.new(filepath[:merchants], self)
+    @merchants ||= MerchantRepository.new(filepath[:merchants])
   end
 
   def items
-    @items ||= ItemRepository.new(filepath[:items], self)
+    @items ||= ItemRepository.new(filepath[:items])
   end
 
   def invoices
-    @invoices ||= InvoiceRepository.new(filepath[:invoices], self)
+    @invoices ||= InvoiceRepository.new(filepath[:invoices])
   end
 
   def invoice_items
-    @invoice_items ||= InvoiceItemsRepository.new(filepath[:invoice_items], self)
+    @invoice_items ||= InvoiceItemsRepository.new(filepath[:invoice_items])
   end
-  
-  def customers 
-    @customers ||= CustomerRepository.new(filepath[:customers], self)
+
+  def customers
+    @customers ||= CustomerRepository.new(filepath[:customers])
   end
 
   def analyst
     @sales_analyst = SalesAnalyst.new(self)
   end
-  
+
   def transactions
-    @transactions ||= TransactionRepository.new(filepath[:transactions], self)
+    @transactions ||= TransactionRepository.new(filepath[:transactions])
   end
 
 end

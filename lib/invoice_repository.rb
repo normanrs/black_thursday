@@ -11,10 +11,9 @@ include Crud
   attr_reader :collection,
               :changeable_attributes
 
-  def initialize(filepath, parent)
+  def initialize(filepath)
     @collection = []
     loader(filepath)
-    @parent = parent
     @changeable_attributes = [:name]
   end
 
@@ -25,7 +24,7 @@ include Crud
     else
       attributes[:id] = 1
     end
-    invoice = Invoice.new(attributes, self)
+    invoice = Invoice.new(attributes)
     @collection << invoice
   end
 
@@ -43,7 +42,7 @@ include Crud
       invoice[:id] = invoice[:id].to_i
       invoice[:updated_at] = Time.parse(invoice[:updated_at])
       invoice[:created_at] = Time.parse(invoice[:created_at])
-      @collection << Invoice.new(invoice, @parent)
+      @collection << Invoice.new(invoice)
     end
   end
 
@@ -83,7 +82,7 @@ include Crud
     else
       attributes[:id] = 1
     end
-    i = Invoice.new(attributes, self)
+    i = Invoice.new(attributes)
     @collection << i
   end
 

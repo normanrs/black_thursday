@@ -9,8 +9,7 @@ class Invoice
   attr_accessor :status,
                 :updated_at
 
-  def initialize(data, parent)
-    @parent      = parent
+  def initialize(data)
     @id          = data[:id].to_i
     @customer_id = data[:customer_id].to_i
     @merchant_id = data[:merchant_id].to_i

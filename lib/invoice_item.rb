@@ -14,7 +14,7 @@ class InvoiceItem
                 :quantity,
                 :updated_at
 
-  def initialize(invoice_item_data, parent)
+  def initialize(invoice_item_data)
     @id                = invoice_item_data[:id]
     @item_id           = invoice_item_data[:item_id]
     @invoice_id        = invoice_item_data[:invoice_id]
